@@ -41,7 +41,6 @@ class CostMap(object):
         right = rectangle[0] + rectangle[2] // 2
         top = rectangle[1] - rectangle[3] // 2
         bottom = rectangle[1] + rectangle[3] // 2
-        print("left: ", left, "right: ", right, "top: ", top, "bottom: ", bottom)
         for j in range(left, right):
             for i in range(top, bottom):
                 if self.is_index_valid(i, j) and not self.is_occupied(i, j):
@@ -71,7 +70,7 @@ class CostMap(object):
         [37,25],[37,31],[37,35],
         [39,3],[39,7], [39,35],
         [41,17], [41, 35],[41,41],
-        [43, 13],[43, 23],[43, 25],[41,33],[43, 37],
+        [43, 13],[43, 23],[43, 25],[43,33],[43, 37],
         [45,9], [45,19], [45,31], [45,35],
         [47, 1],[47, 3],[47, 11],[47,23],[47,27],
 
