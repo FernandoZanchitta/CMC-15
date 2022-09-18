@@ -39,8 +39,12 @@ def gradient_descent(learning_rate = 0.001, max_iter= 10000, max_iters_without_i
         curr_gradient = hessian_f_x_y(curr_x, curr_y)
         if (iters_without_improvement >= max_iters_without_improvement):
             break
+    print("solution: x = {}, y = {}, f(x,y) = {}".format(curr_x, curr_y, curr_f_x_y))
+    print("max iterations without improvement: {}".format(max_iters_without_improvement))
+    print("max iterations: {}".format(max_iter))
+    print("learning rate: {}".format(learning_rate))
     return curr_x, curr_y, curr_f_x_y
 
-print(gradient_descent())
+gradient_descent()
 
 
