@@ -39,22 +39,26 @@ def plot_path(cost_map, start, goal, path, filename, save_fig=True, show_fig=Tru
     """
     plt.matshow(cost_map.grid)
     ax = plt.gca()
-    minor_ticks_height = np.arange(0, HEIGHT, 1)
-    minor_ticks_width = np.arange(0, WIDTH, 1)
+    # minor_ticks_height = np.arange(0, HEIGHT, 2)
+    # minor_ticks_width = np.arange(0, WIDTH, 2)
 
-    ax.set_xticks(minor_ticks_width,minor = True)
-    ax.set_yticks(minor_ticks_height,minor = True)
+    # major_ticks_height = np.arange(0, HEIGHT, 10)
+    # major_ticks_width = np.arange(0, WIDTH, 10)
 
-    ax.grid(which='both')
+    # ax.set_xticks(minor_ticks_width,minor = True)
+    # ax.set_yticks(minor_ticks_height,minor = True)
+    # ax.set_xticks(major_ticks_height,major = True)
+    # ax.set_yticks(major_ticks_width,major = True)
+    # ax.grid(which='both')
 
     x = []
     y = []
     for point in path:
         x.append(point[1])
         y.append(point[0])
-    plt.plot(x, y, linewidth=2)
-    plt.plot(start[1], start[0], 'y*', markersize=10)
-    plt.plot(goal[1], goal[0], 'rx', markersize=10)
+    plt.plot(x, y, linewidth=1)
+    plt.plot(start[1], start[0], 'y*', markersize=5)
+    plt.plot(goal[1], goal[0], 'rx', markersize=5)
 
     plt.xlabel('x / j')
     plt.ylabel('y / i')
@@ -75,10 +79,10 @@ def plot_path(cost_map, start, goal, path, filename, save_fig=True, show_fig=Tru
 
 
 # Environment's parameters
-WIDTH = 23
-HEIGHT = 20
-OBSTACLE_WIDTH = 1
-OBSTACLE_HEIGHT = 1
+WIDTH = 49
+HEIGHT = 43
+OBSTACLE_WIDTH = 2
+OBSTACLE_HEIGHT = 2
 NUM_OBSTACLES = 70
 
 cost_map = CostMap(WIDTH, HEIGHT)
@@ -86,7 +90,9 @@ cost_map = CostMap(WIDTH, HEIGHT)
 # Please, do not change the seed
 random.seed(23)
 # Create a random map
-cost_map.create_random_map(OBSTACLE_WIDTH, OBSTACLE_HEIGHT, NUM_OBSTACLES)
+
+# cost_map.create_random_map(OBSTACLE_WIDTH, OBSTACLE_HEIGHT, NUM_OBSTACLES)
+cost_map.create_exercise_map(OBSTACLE_WIDTH, OBSTACLE_HEIGHT)
 # Create the path planner using the cost map
 path_planner = PathPlanner(cost_map)
 # These vectors will hold the computation time and path cost for each iteration,
@@ -97,8 +103,8 @@ for i in range(num_iterations):
     problem_valid = False
     while not problem_valid:
         # Trying to generate a new problem
-        start_position = (0, 0)
-        goal_position = (19,22)
+        start_position = (1, 1)
+        goal_position = (41,47)
         # If the start or goal positions happen to be within an obstacle, we discard them and
         # try new samples
         if cost_map.is_occupied(start_position[0], start_position[1]):
